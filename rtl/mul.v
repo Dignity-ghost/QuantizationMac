@@ -1,5 +1,3 @@
-// Latch
-
 module mul(a,b,r);
 
 input   [11:0]   a;

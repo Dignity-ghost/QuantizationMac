@@ -10,8 +10,8 @@ mul mul(
 );
 
 initial begin
-    a = 12'h248;
-    b = 12'h248;
+    a = 12'hFFF;
+    b = 12'hFFF;
 
 end
 
