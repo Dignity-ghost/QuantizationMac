@@ -9,7 +9,7 @@ VGG_MEAN = [103.939, 116.779, 123.68]
 
 
 class Vgg16:
-    def __init__(self, vgg16_npy_path='/home/linux/file/package/tensorflow_material/vgg16.npy'):
+    def __init__(self, vgg16_npy_path='E:\\project\\dataset\\vgg16.npy'):
         if vgg16_npy_path is None:
             path = inspect.getfile(Vgg16)
             path = os.path.abspath(os.path.join(path, os.pardir))
@@ -84,10 +84,10 @@ class Vgg16:
         return tf.nn.avg_pool(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
     def max_pool(self, bottom, name):
-        return tf.nn.max_pool(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
+        return tf.nn.max_pool2d(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
     def conv_layer(self, bottom, name):
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             filt = self.get_conv_filter(name)
 
             conv = tf.nn.conv2d(bottom, filt, [1, 1, 1, 1], padding='SAME')
@@ -99,7 +99,7 @@ class Vgg16:
             return relu
 
     def fc_layer(self, bottom, name):
-        with tf.variable_scope(name):
+        with tf.compat.v1.variable_scope(name):
             shape = bottom.get_shape().as_list()
             dim = 1
             for d in shape[1:]:

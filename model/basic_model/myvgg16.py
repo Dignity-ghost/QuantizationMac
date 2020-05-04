@@ -1,5 +1,5 @@
 import re 
-label_path = ""
+label_path = "E:\\project\\dataset\\val.txt"
 label = [l.strip() for l in open(label_path).readlines()]
 for i in range(len(label)):
     label[i] = re.split(r' ', label[i]) 
@@ -11,8 +11,8 @@ import tensorflow as tf
 import vgg16
 import utils
 
-val_path = ""
-batch_size = 20
+val_path = "E:\\project\\dataset\\val100\\"
+batch_size = 50
 val_num = 100
 top1_rate = 0
 top5_rate = 0
@@ -22,11 +22,15 @@ for i in range(0,val_num,batch_size):
     batch = batch.reshape((1, 224, 224, 3))
     for j in range(i+1,i+batch_size):
         img = utils.load_image(val_path + label[j][0])
+        if(img.size == 50176):
+            img = np.concatenate((img,img,img), axis=-1)
         img = img.reshape((1, 224, 224, 3))
         batch = np.concatenate((batch, img), 0)
     
-    with tf.Session() as sess:
-        images = tf.placeholder("float", [batch_size, 224, 224, 3])
+    config = tf.compat.v1.ConfigProto()
+    config.gpu_options.allow_growth = True
+    with tf.compat.v1.Session(config = config) as sess:
+        images = tf.compat.v1.placeholder("float", [batch_size, 224, 224, 3])
         feed_dict = {images: batch}
 
         vgg = vgg16.Vgg16()
