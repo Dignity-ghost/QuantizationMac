@@ -12,8 +12,8 @@ for key in keys:
     biases = biases.astype(np.float16)
     weights = weights.astype(np.float32)
     biases = biases.astype(np.float32)
-    #a = sum(weights-data_dict[key][0])
-    #print("loss",key,a)
+    a = sum(weights-data_dict[key][0])
+    print("loss",key,a)
     data_dict[key][0] = weights
     data_dict[key][1] = biases
 

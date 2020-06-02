@@ -1,6 +1,6 @@
 import inspect
 import os
-
+from numpy import *
 import numpy as np
 import tensorflow as tf
 import time
@@ -8,6 +8,18 @@ import time
 VGG_MEAN = [103.939, 116.779, 123.68]
 
 
+def my_print(value1,value2):
+    div = 128
+    if value1 >= abs(value2):
+        return value1 / div
+    else:
+        return abs(value2) / div
+
+def quanti8(div,a):
+    a = np.trunc(a / div)
+    a[a>127] = np.trunc(a[a>127] / (2**(np.log2(a[a>127])-6))) * (2**(np.log2(a[a>127])-6))
+    return a
+            
 class Vgg16:
     def __init__(self, vgg16_npy_path='E:\\project\\dataset\\vgg16_int8.npy'):
         if vgg16_npy_path is None:
@@ -80,20 +92,29 @@ class Vgg16:
         self.data_dict = None
         print(("build model finished: %ds" % (time.time() - start_time)))
 
+
     def avg_pool(self, bottom, name):
         return tf.nn.avg_pool(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
     def max_pool(self, bottom, name):
         return tf.nn.max_pool2d(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
+
     def conv_layer(self, bottom, name):
         with tf.compat.v1.variable_scope(name):
             filt = self.get_conv_filter(name)
+            wmax = tf.reduce_max(filt)
+            wmin = tf.reduce_min(filt)
+            wpeek = tf.py_function(my_print,[wmax,wmin],[tf.float32])
 
             conv = tf.nn.conv2d(bottom, filt, [1, 1, 1, 1], padding='SAME')
 
             conv_biases = self.get_bias(name)
             bias = tf.nn.bias_add(conv, conv_biases)
+           
+            s = tf.shape(bias)
+            bias = tf.py_function(quanti8,[wpeek,bias],[tf.float32])  
+            bias = tf.reshape(bias,s)
 
             relu = tf.nn.relu(bias)
             return relu
@@ -109,9 +130,17 @@ class Vgg16:
             weights = self.get_fc_weight(name)
             biases = self.get_bias(name)
 
+            wmax = tf.reduce_max(weights)
+            wmin = tf.reduce_min(weights)
+            wpeek = tf.py_function(my_print,[wmax,wmin],[tf.float32])
+
             # Fully connected layer. Note that the '+' operation automatically
             # broadcasts the biases.
             fc = tf.nn.bias_add(tf.matmul(x, weights), biases)
+            
+            s = tf.shape(fc)
+            bias = tf.py_function(quanti8,[wpeek,fc],[tf.float32])  
+            bias = tf.reshape(fc,s)
 
             return fc
 

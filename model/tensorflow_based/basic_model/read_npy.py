@@ -1,6 +1,6 @@
 import numpy as np
 
-data_dict = np.load('/home/linux/file/package/tensorflow_material/vgg16.npy', encoding='latin1').item()
+data_dict = np.load('E:\\project\\dataset\\vgg16.npy', encoding='latin1').item()
 keys = sorted(data_dict.keys())
 
 for key in keys:

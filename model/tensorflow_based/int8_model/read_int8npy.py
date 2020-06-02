@@ -17,6 +17,7 @@ for key in keys:
     bmin_loc = np.unravel_index(np.argmin(biases),biases.shape)
     bmax = biases[bmax_loc]
     bmin = biases[bmin_loc]
+    print(wmax,wmin)
     if wmax > abs(wmin):
         wq = wmax
     else:

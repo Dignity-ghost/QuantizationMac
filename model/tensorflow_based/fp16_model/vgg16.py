@@ -95,6 +95,9 @@ class Vgg16:
             conv_biases = self.get_bias(name)
             bias = tf.nn.bias_add(conv, conv_biases)
 
+            bias = tf.cast(bias,dtype=tf.float16)
+            bias = tf.cast(bias,dtype=tf.float32)   
+
             relu = tf.nn.relu(bias)
             return relu
 
@@ -112,6 +115,9 @@ class Vgg16:
             # Fully connected layer. Note that the '+' operation automatically
             # broadcasts the biases.
             fc = tf.nn.bias_add(tf.matmul(x, weights), biases)
+
+            fc = tf.cast(fc,dtype=tf.float16)
+            fc = tf.cast(fc,dtype=tf.float32)  
 
             return fc
 
