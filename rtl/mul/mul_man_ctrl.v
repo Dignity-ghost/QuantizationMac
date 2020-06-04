@@ -21,7 +21,7 @@ wire    [18: 0]     mid_b_1_wire;
 //    op2_0 <= op2;
 //end
 
-mul_comp mul_comp(
+mul_man_comp mul_man_comp(
     .op1(op1), 
     .op2(op2),
     .result_a(mid_a_1_wire),

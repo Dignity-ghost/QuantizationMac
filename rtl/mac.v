@@ -45,7 +45,7 @@ mul mul(
 acc_int acc_int(
     .clk(clk), 
     .rst_n(rst_n),
-    .r_mul({sgm,man[14:7]}),
+    .r_mul({sgn,man[14:7]}),
     .ops_2(ops_2[7:0]),
     .result(result_int8)
 );

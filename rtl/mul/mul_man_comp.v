@@ -3,7 +3,7 @@ module mul_man_comp(
     result_a, result_b
 );
 
-input   [10:0]   op1, op2;
+input   [11:0]   op1, op2;
 
 output  [23:0]   result_a;
 output  [18:0]   result_b;
