@@ -33,8 +33,8 @@ reg     [18: 0]     mid_b_1;
 
 always @(posedge clk or negedge rst_n)
 if (~rst_n) begin
-    mid_a_1 <= 23'h0;
-    mid_b_1 <= 18'h0;
+    mid_a_1 <= 24'h0;
+    mid_b_1 <= 19'h0;
 end else begin
     mid_a_1 <= mid_a_1_wire;
     mid_b_1 <= mid_b_1_wire;
@@ -47,7 +47,7 @@ assign result_2_wire[ 4: 0] = mid_a_1_wire[ 4:0];
 assign result_2_wire[23: 5] = mid_a_1_wire[23:5] + mid_b_1_wire;
 
 always @(posedge clk or negedge rst_n)
-if (~rst_n)     result_2 <= 23'h0;
+if (~rst_n)     result_2 <= 24'h0;
 else            result_2 <= result_2_wire;
 
 assign  result = result_2[23:8];
