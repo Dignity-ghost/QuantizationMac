@@ -245,8 +245,8 @@ assign lv5_s[23] = lv4_s1[19] | lv4_c1[15];
 
 
 
-assign result_a = lv5_s;
-assign result_b = lv5_c;
+assign #1 result_a = lv5_s;
+assign #1 result_b = lv5_c;
 //always @(posedge clk) begin
 //    result_a <= lv5_s;
 //    result_b <= lv5_c;

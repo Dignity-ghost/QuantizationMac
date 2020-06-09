@@ -43,8 +43,8 @@ end
 reg     [23: 0]     result_2;
 wire    [23: 0]     result_2_wire;
 
-assign result_2_wire[ 4: 0] = mid_a_1_wire[ 4:0];
-assign result_2_wire[23: 5] = mid_a_1_wire[23:5] + mid_b_1_wire;
+assign result_2_wire[ 4: 0] = mid_a_1[ 4:0];
+assign result_2_wire[23: 5] = mid_a_1[23:5] + mid_b_1;
 
 always @(posedge clk or negedge rst_n)
 if (~rst_n)     result_2 <= 24'h0;

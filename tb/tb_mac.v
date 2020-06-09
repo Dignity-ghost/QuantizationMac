@@ -21,7 +21,7 @@ initial begin
     op1     = 16'h0;
     op2     = 16'h0;
     ops     = 16'h0;
-    # 10
+    #10
     rst_n   = 1'b1;
     op1 = 16'h20;
     op2 = 16'h20;
