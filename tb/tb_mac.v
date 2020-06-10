@@ -18,6 +18,7 @@ initial begin
     clk     =  1'b0;
     rst_n   =  1'b0;
     fp_sel  =  1'b0;
+    #1
     op1     = 16'h0;
     op2     = 16'h0;
     ops     = 16'h0;
