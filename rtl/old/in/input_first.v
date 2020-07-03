@@ -68,7 +68,7 @@ end
 always @* begin
 out_mantissa = 'd0;
 if (type_sel) begin
-        out_mantissa[ width_out_mantissa - 1 : width_out_mantissa - width_in_mantissa] = n - in_mantissa;
+        out_mantissa[ width_out_mantissa - 1 : width_out_mantissa - width_in_mantissa] = in_mantissa;
 end else begin
     if ((n >= int_zero_num)) begin
         case (int_zero_num)
@@ -87,16 +87,28 @@ end
 always @* begin
 if (type_sel) begin int_zero_num = 3'h0; end
 else begin
-    casez (in_mantissa[6:0])
-    7'b1??????: begin int_zero_num = 3'h0; end
-    7'b01?????: begin int_zero_num = 3'h1; end
-    7'b001????: begin int_zero_num = 3'h2; end
-    7'b0001???: begin int_zero_num = 3'h3; end
-    7'b00001??: begin int_zero_num = 3'h4; end
-    7'b000001?: begin int_zero_num = 3'h5; end
-    7'b0000001: begin int_zero_num = 3'h6; end
-    default: begin int_zero_num = 3'h7; end
-    endcase
+    //casez (in_mantissa[6:0])
+    //7'b1??????: begin int_zero_num = 3'h0; end
+    //7'b01?????: begin int_zero_num = 3'h1; end
+    //7'b001????: begin int_zero_num = 3'h2; end
+    //7'b0001???: begin int_zero_num = 3'h3; end
+    //7'b00001??: begin int_zero_num = 3'h4; end
+    //7'b000001?: begin int_zero_num = 3'h5; end
+    //7'b0000001: begin int_zero_num = 3'h6; end
+    //default: begin int_zero_num = 3'h7; end
+    //endcase
+    if      (in_mantissa[6]) int_zero_num = 3'h0;
+    else if (in_mantissa[5]) int_zero_num = 3'h1;
+    else if (in_mantissa[4]) int_zero_num = 3'h2;
+    else if (in_mantissa[3]) int_zero_num = 3'h3;
+    else if (in_mantissa[2]) int_zero_num = 3'h4;
+    else if (in_mantissa[1]) int_zero_num = 3'h5;
+    else if (in_mantissa[0]) int_zero_num = 3'h6;
+    else                     int_zero_num = 3'h7;
+
+
+
+
 end
 end
 
