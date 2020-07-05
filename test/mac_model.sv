@@ -1,39 +1,45 @@
-`ifndef MY_MODEL__SV
-`define MY_MODEL__SV
+`ifndef MAC_MODEL__SV
+`define MAC_MODEL__SV
 
-class my_model extends uvm_component;
+class mac_model extends uvm_component;
    
-   uvm_blocking_get_port #(my_transaction)  port;
-   uvm_analysis_port #(my_transaction)  ap;
+   uvm_blocking_get_port #(mac_transaction)  port;
+   uvm_analysis_port #(mac_transaction)  ap;
 
    extern function new(string name, uvm_component parent);
    extern function void build_phase(uvm_phase phase);
    extern virtual  task main_phase(uvm_phase phase);
+   extern task mac(mac_transaction input, mac_transaction output);
 
-   `uvm_component_utils(my_model)
+   `uvm_component_utils(mac_model)
 endclass 
 
-function my_model::new(string name, uvm_component parent);
+function mac_model::new(string name, uvm_component parent);
    super.new(name, parent);
 endfunction 
 
-function void my_model::build_phase(uvm_phase phase);
+function void mac_model::build_phase(uvm_phase phase);
    super.build_phase(phase);
    port = new("port", this);
    ap = new("ap", this);
 endfunction
 
-task my_model::main_phase(uvm_phase phase);
-   my_transaction tr;
-   my_transaction new_tr;
+task mac_model::main_phase(uvm_phase phase);
+   mac_transaction tr;
+   mac_transaction new_tr;
    super.main_phase(phase);
    while(1) begin
       port.get(tr);
-      new_tr = new("new_tr");
-      new_tr.copy(tr);
-      `uvm_info("my_model", "get one transaction, copy and print it:", UVM_LOW)
+      mac(tr, new_tr);
+      `uvm_info("mac_model", "get one transaction, copy and print it:", UVM_LOW)
       new_tr.print();
       ap.write(new_tr);
    end
 endtask
+
+task mac_model::mac(mac_transaction input, mac_transaction output);
+
+
+
+end task
 `endif

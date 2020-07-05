@@ -1,13 +1,13 @@
-`ifndef MY_SEQUENCER__SV
-`define MY_SEQUENCER__SV
+`ifndef MAC_SEQUENCER__SV
+`define MAC_SEQUENCER__SV
 
-class my_sequencer extends uvm_sequencer #(my_transaction);
+class mac_sequencer extends uvm_sequencer #(mac_transaction);
    
    function new(string name, uvm_component parent);
       super.new(name, parent);
    endfunction 
    
-   `uvm_component_utils(my_sequencer)
+   `uvm_component_utils(mac_sequencer)
 endclass
 
 `endif
