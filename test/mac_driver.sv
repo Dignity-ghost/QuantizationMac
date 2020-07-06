@@ -40,7 +40,7 @@ task mac_driver::drive_one_pkt(mac_transaction tr);
    
    `uvm_info("mac_driver", "begin to drive one pkt", UVM_LOW);
 
-   repeat(3) @(posedge vif.clk);
+   repeat (3) @(posedge vif.clk);
    vif.mode <= tr.mode;
    vif.value <= tr.value;
    vif.weight <= tr.weight;

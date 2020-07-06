@@ -32,20 +32,23 @@ task mac_monitor::main_phase(uvm_phase phase);
 endtask
 
 task mac_monitor::collect_one_pkt(mac_transaction tr);
-   // while(1) begin
-   //    @(posedge vif.clk);
-   //    if(vif.valid) break;
-   // end
-
-   @(vif.value or vif.weight or vif.intr or vif.fpr);
+   while(1) begin
+        repeat (3) @(posedge vif.clk);
+        if(vif.fps != 'b0 && vif.rst_n) break;
+        if(vif.fpr != 'b0 && vif.rst_n) break;
+        if(vif.intr != 'b0 && vif.rst_n) break;
+   end
    
    `uvm_info("mac_monitor", "begin to collect one pkt", UVM_LOW);
    
-   tr.mode <= vif.mode;
-   tr.value <= vif.value;
-   tr.weight <= vif.weight;
-   tr.ints <= vif.ints;
-   tr.fps <= vif.fps;
+   tr.mode = vif.mode;
+   tr.value = vif.value;
+   tr.weight = vif.weight;
+   tr.ints = vif.ints;
+   tr.fps = vif.fps;
+
+   tr.fpr = vif.fpr;
+   tr.intr = vif.intr;
 
    `uvm_info("mac_monitor", "end collect one pkt", UVM_LOW);
 endtask

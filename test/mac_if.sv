@@ -3,14 +3,13 @@
 
 interface mac_if(input clk, input rst_n);
 
-   logic [ 1: 0] mode;
+   logic [ 3: 0] mode;
    logic [15: 0] value, weight;
    logic [23: 0] ints;
    logic [30: 0] fps;
    
    logic [23: 0] intr;
    logic [30: 0] fpr;
-   logic [15: 0] fpr_norm;
 endinterface
 
 `endif

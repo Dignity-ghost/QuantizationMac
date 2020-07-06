@@ -12,7 +12,7 @@ class mac_sequence extends uvm_sequence #(mac_transaction);
 
    virtual task body();
 
-      if(!uvm_config_db#(int)::get(this, "", "simu_times", simu_times))
+      if(!uvm_config_db#(int)::get(null, "", "simu_times", simu_times))
          `uvm_fatal("mac_sequence", "simulation times must be set for sequence!!!")
 
       if(starting_phase != null) 

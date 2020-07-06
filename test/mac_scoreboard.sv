@@ -23,7 +23,7 @@ endfunction
 
 task mac_scoreboard::main_phase(uvm_phase phase);
    mac_transaction  get_expect,  get_actual, tmp_tran;
-   bit result;
+   bit result, result_int, result_fp;
  
    super.main_phase(phase);
    fork 
@@ -35,7 +35,9 @@ task mac_scoreboard::main_phase(uvm_phase phase);
          act_port.get(get_actual);
          if(expect_queue.size() > 0) begin
             tmp_tran = expect_queue.pop_front();
-            result = get_actual.compare(tmp_tran);
+            result_int = get_actual.intr == tmp_tran.intr;
+            result_fp = get_actual.fpr == tmp_tran.fpr;
+            result = result_int || result_fp;
             if(result) begin 
                `uvm_info("mac_scoreboard", "Compare SUCCESSFULLY", UVM_LOW);
             end

@@ -17,10 +17,6 @@ module top_tb;
 
 reg clk;
 reg rst_n;
-reg[7:0] rxd;
-reg rx_dv;
-wire[7:0] txd;
-wire tx_en;
 
 mac_if input_if(clk, rst_n);
 mac_if output_if(clk, rst_n);
@@ -34,12 +30,11 @@ mac_if output_if(clk, rst_n);
 
 mac mac_dut(.mode(input_if.mode),
             .value(input_if.value),
-            .weight(input_if.weight;),
+            .weight(input_if.weight),
             .ints(input_if.ints),
             .fps(input_if.fps),
             .intr(output_if.intr),
-            .fpr(output_if.fpr),
-            .fpr_norm(output_if.fpr_norm));
+            .fpr(output_if.fpr));
 
 initial begin
    clk = 0;
@@ -59,6 +54,7 @@ initial begin
 end
 
 initial begin
+   int simu_times = 3000;
    uvm_config_db#(virtual mac_if)::set(null, "uvm_test_top.env.i_agt.drv", "vif", input_if);
    uvm_config_db#(virtual mac_if)::set(null, "uvm_test_top.env.i_agt.mon", "vif", input_if);
    uvm_config_db#(virtual mac_if)::set(null, "uvm_test_top.env.o_agt.mon", "vif", output_if);
