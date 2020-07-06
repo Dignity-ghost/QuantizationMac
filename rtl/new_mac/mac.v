@@ -7,7 +7,7 @@ module mac(
 );
 
 // port **********************************************************
-input   wire                clk, rst_n;
+// input   wire                clk, rst_n;
 input   wire    [ 1: 0]     mode;
 input   wire    [15: 0]     value, weight;
 input   wire    [23: 0]     ints;

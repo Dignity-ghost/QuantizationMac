@@ -11,6 +11,10 @@ class mac_transaction extends uvm_sequence_item;
    rand bit [23: 0] intr;
    rand bit [30: 0] fpr;
 
+   constraint one_hot {
+      $countones(mode) == 1;
+   }
+
    `uvm_object_utils_begin(mac_transaction)
       `uvm_field_int(mode, UVM_ALL_ON)
       `uvm_field_int(value, UVM_ALL_ON)
