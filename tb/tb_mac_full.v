@@ -1,4 +1,4 @@
-module tb_mac();
+module tb_mac_full();
 
 
 // port **********************************************************
@@ -17,7 +17,7 @@ parameter                   mode_int_l  = 3;
 parameter                   exp_zero    = 5'h0c;
 
 
-mac mac(
+mac_full mac_full(
     .mode(mode),
     .value(value),
     .weight(weight),
@@ -32,7 +32,7 @@ initial begin
     value   =   16'he678;
     weight  =   16'h6789;
     ints    =   24'h12345678;
-    fps     =   { 5'h19, 13'h0c56 };
+    fps     =   { 5'h19, 25'h0c56789 };
     #1
     mode    =   1'b1 << mode_int_m;
     #1

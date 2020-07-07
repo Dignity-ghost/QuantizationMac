@@ -1,4 +1,4 @@
-module mul_man_comp(
+module wallace_tree(
     op1, op2,
     result_a, result_b
 );
@@ -245,18 +245,8 @@ assign lv5_s[23] = lv4_s1[19] | lv4_c1[15];
 
 
 
-assign #1 result_a = lv5_s;
-assign #1 result_b = lv5_c;
-//always @(posedge clk) begin
-//    result_a <= lv5_s;
-//    result_b <= lv5_c;
-//end
-//
-//
-//// level 6 (final) *******************************************/
-//assign r[ 4: 0] = result_a[ 4:0];
-//assign r[23: 5] = result_a[23:5] + result_b;
-
+assign result_a = lv5_s;
+assign result_b = lv5_c;
 
 
 endmodule 
