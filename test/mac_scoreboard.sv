@@ -1,7 +1,7 @@
 `ifndef MAC_SCOREBOARD__SV
 `define MAC_SCOREBOARD__SV
 class mac_scoreboard extends uvm_scoreboard;
-   mac_transaction  expect_queue[$];
+   mac_transaction  actual_queue[$];
    uvm_blocking_get_port #(mac_transaction)  exp_port;
    uvm_blocking_get_port #(mac_transaction)  act_port;
    `uvm_component_utils(mac_scoreboard)
@@ -28,31 +28,31 @@ task mac_scoreboard::main_phase(uvm_phase phase);
    super.main_phase(phase);
    fork 
       while (1) begin
-         exp_port.get(get_expect);
-         expect_queue.push_back(get_expect);
+         act_port.get(get_actual);
+         actual_queue.push_back(get_actual);
       end
       while (1) begin
-         act_port.get(get_actual);
-         if(expect_queue.size() > 0) begin
-            tmp_tran = expect_queue.pop_front();
-            result_int = get_actual.intr == tmp_tran.intr;
-            result_fp = get_actual.fpr == tmp_tran.fpr;
-            result = result_int || result_fp;
+         exp_port.get(get_expect);
+         if(actual_queue.size() > 0) begin
+            tmp_tran = actual_queue.pop_front();
+            result_int = get_expect.intr == tmp_tran.intr;
+            result_fp = get_expect.fpr == tmp_tran.fpr;
+            result = (get_expect.mode == 'b0001) ? result_fp : result_int;
             if(result) begin 
                `uvm_info("mac_scoreboard", "Compare SUCCESSFULLY", UVM_LOW);
             end
             else begin
                `uvm_error("mac_scoreboard", "Compare FAILED");
                $display("the expect pkt is");
-               tmp_tran.print();
+               get_expect.print();
                $display("the actual pkt is");
-               get_actual.print();
+               tmp_tran.print();
             end
          end
          else begin
             `uvm_error("mac_scoreboard", "Received from DUT, while Expect Queue is empty");
             $display("the unexpected pkt is");
-            get_actual.print();
+            get_expect.print();
          end 
       end
    join
