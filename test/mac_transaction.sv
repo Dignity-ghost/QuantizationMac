@@ -6,10 +6,10 @@ class mac_transaction extends uvm_sequence_item;
    rand bit [ 3: 0] mode;
    rand bit [15: 0] value, weight;
    rand bit [23: 0] ints;
-   rand bit [30: 0] fps;
+   rand bit [17: 0] fps;
 
    rand bit [23: 0] intr;
-   rand bit [30: 0] fpr;
+   rand bit [17: 0] fpr;
 
    constraint one_hot {
       $countones(mode) == 1;

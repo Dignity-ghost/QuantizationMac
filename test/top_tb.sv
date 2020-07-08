@@ -54,7 +54,7 @@ initial begin
 end
 
 initial begin
-   int simu_times = 3000;
+   int simu_times = 100000;
    uvm_config_db#(virtual mac_if)::set(null, "uvm_test_top.env.i_agt.drv", "vif", input_if);
    uvm_config_db#(virtual mac_if)::set(null, "uvm_test_top.env.i_agt.mon", "vif", input_if);
    uvm_config_db#(virtual mac_if)::set(null, "uvm_test_top.env.o_agt.mon", "vif", output_if);
