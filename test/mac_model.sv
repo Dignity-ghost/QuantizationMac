@@ -39,63 +39,78 @@ endtask
 
 function mac_model::mac(mac_transaction tr_i, mac_transaction tr_o);
 
-   bit signed [12: 0] mul_weight = (tr_i.weight == 'b0) ? 13'b0 : {tr_i.weight[15], ~tr_i.weight[15], tr_i.weight[10: 0]};
-   bit signed [13: 0] mul_value = (tr_i.value == 'b0) ? 14'b0 : {2'h1, tr_i.value[11: 0]};
+   // int input signed expansion , All zero means 0, no expansion
+   bit signed [8 : 0] int_weight = (tr_i.weight == 'b0) ? 9'b0 : {tr_i.weight[7], tr_i.weight[7: 0]};
+   bit signed [8 : 0] int_value  = {1'b0, tr_i.value[7: 0]};
+   bit signed [17: 0] int_intr;
 
-   bit signed [25: 0] mul_result = mul_value * mul_weight;
-   bit signed [13: 0] mul_result_fp = mul_result[25: 12];
+   // fp input signed expansion of mantissa, All zeros means 0, no expansion
+   bit signed [12: 0] weight_man = (tr_i.weight == 'b0) ? 13'b0 : {tr_i.weight[15], ~tr_i.weight[15], tr_i.weight[10: 0]};
+   bit signed [12: 0] value_man  = (tr_i.value  == 'b0) ? 13'b0 : {2'h1, tr_i.value[10: 0]};
+   bit signed [12: 0] fps_man    = tr_i.fps[12:  0];
 
+   // fp input signed expansion of exponent
+   bit unsigned [ 3: 0] weight_exp = tr_i.weight[14: 11];
+   bit unsigned [ 4: 0] value_exp  = tr_i.value[15: 11]; 
+   bit unsigned [ 4: 0] fps_exp    = tr_i.fps[17: 13];
 
-   bit signed [ 3: 0] exp_weight = tr_i.weight[14: 11];
-   bit signed [ 3: 0] exp_value = tr_i.value[15: 12]; 
-   bit signed [ 4: 0] exp_mul_result = exp_value + exp_weight;
-   bit signed [ 4: 0] fps_exp = tr_i.fps[17: 13];
-   bit signed [12: 0] fps_man = tr_i.fps[12:  0];
+   // mantissa of tmp multiplication and cut the precision
+   bit signed [24: 0] mul_man_full = weight_man * value_man;
+   bit signed [13: 0] mul_man      = mul_man_full[24: 11];
 
-   bit signed [ 4: 0] shift = exp_mul_result - fps_exp;
-   bit                mul_lt_fps = ~shift[4];
-   bit signed [13: 0] acc_mul = mul_result_fp >>> (~mul_lt_fps ? -shift : 0);
-   bit signed [12: 0] acc_fps = fps_man       >>> ( mul_lt_fps ?  shift : 0);
-   bit signed [13: 0] acc_fp_m = acc_mul + {acc_fps[12], acc_fps} ;
+   // exponent of tmp multiplication
+   bit unsigned [ 5: 0] mul_exp = value_exp + weight_exp - 5'hc;
 
+   // add the mantissa of bias and multiplication
+   bit signed [ 5: 0] shift         = mul_exp - fps_exp;
+   bit signed [13: 0] norm_mul_man  = mul_man >>> (  shift[5] ? -shift : 0);
+   bit signed [12: 0] norm_fps_man  = fps_man >>> ( ~shift[5] ?  shift : 0);
+   bit signed [13: 0] norm_man      = norm_mul_man + {norm_fps_man[12], norm_fps_man} ;
+   
+   // preclaration of the final variable
    bit signed   [12: 0] fpr_m;
    bit unsigned [4: 0]  fpr_e;
 
-   bit signed [25: 0] tmp_intr;
-   bit signed [12: 0] tmp_weight;
-   bit signed [13: 0] tmp_value;
+   // find index of the first valid bit 
+   bit signed [ 4: 0] fpr_shift = 0;
+   bit        [12: 0] tmp_xor   = {13{norm_man[13]}} ^ norm_man[12: 0];
+   if      (tmp_xor[12]) begin fpr_shift = -5'd1;  end
+   else if (tmp_xor[11]) begin fpr_shift =  5'd0;  end
+   else if (tmp_xor[10]) begin fpr_shift =  5'd1;  end
+   else if (tmp_xor[9])  begin fpr_shift =  5'd2;  end
+   else if (tmp_xor[8])  begin fpr_shift =  5'd3;  end
+   else if (tmp_xor[7])  begin fpr_shift =  5'd4;  end
+   else if (tmp_xor[6])  begin fpr_shift =  5'd5;  end
+   else if (tmp_xor[5])  begin fpr_shift =  5'd6;  end
+   else if (tmp_xor[4])  begin fpr_shift =  5'd7;  end
+   else if (tmp_xor[3])  begin fpr_shift =  5'd8;  end
+   else if (tmp_xor[2])  begin fpr_shift =  5'd9;  end
+   else if (tmp_xor[1])  begin fpr_shift =  5'd10; end
+   else if (tmp_xor[0])  begin fpr_shift =  5'd11; end
+   
+   // normalization
+   fpr_m = &fpr_shift ? norm_man[13: 1] : norm_man << fpr_shift;
+   fpr_e = (~shift[5] ? mul_exp : fps_exp) - fpr_shift;
 
-   bit signed [ 3: 0] fpr_m_norm_shift = 0;
-   for(int i = 0; i < 13; i++) begin
-      if(acc_fp_m[i] ^ acc_fp_m[13]) begin
-         fpr_m_norm_shift = 4'd11 - i;
-      end
-   end
+   // Copy the data of input of dut
+   tr_o.copy(tr_i);
 
-   fpr_m = &fpr_m_norm_shift ? acc_fp_m[13: 1] : acc_fp_m << fpr_m_norm_shift;
-   fpr_e = (mul_lt_fps ? exp_mul_result : fps_exp) - fpr_m_norm_shift;
-
-      tr_o.copy(tr_i);
+   //write the final output
    if (tr_i.mode == 4'b0001) begin //fp
       tr_o.fpr =  {fpr_e, fpr_m};
    end else if (tr_i.mode == 4'b0010) begin // int * 1
-      tmp_value = {3'b0, tr_i.value[7: 0], 3'b0};
-      tmp_weight = {{2{tr_i.weight[7]}}, tr_i.weight[7: 0], 3'b0};
-      tmp_intr = tmp_value * tmp_weight;
+      int_intr = int_value * int_weight;
    end else if (tr_i.mode == 4'b0100) begin // int * 4 
-      tmp_value = {3'b0, tr_i.value[7: 0], 3'b0};
-      tmp_weight = {tr_i.weight[7: 0], 5'b0};
-      tmp_intr = tmp_value * tmp_weight;
+      int_intr = int_value * int_weight*4;
    end else if (tr_i.mode == 4'b1000) begin // int * 16
-      tmp_value = {1'b0, tr_i.value[7: 0], 5'b0};
-      tmp_weight = {tr_i.weight[7: 0], 5'b0};
-      tmp_intr = tmp_value * tmp_weight;
-   end else begin
+      int_intr = int_value * int_weight * 16;
+   end else begin // invalid
       tr_o.fpr = 'b0;
       tr_o.intr = 'b0;
    end
 
-   tr_o.intr = {{6{tmp_intr[23]}}, tmp_intr[23: 6]} + tr_i.ints;
+   // add the int bias to the mul of int
+   tr_o.intr = {{6{int_intr[17]}}, int_intr} + tr_i.ints;
 
 endfunction
 `endif

@@ -28,7 +28,7 @@ mac_if output_if(clk, rst_n);
 //            .txd(output_if.data),
 //            .tx_en(output_if.valid));
 
-mac mac_dut(.mode(input_if.mode),
+mac_ve5 mac_dut(.mode(input_if.mode),
             .value(input_if.value),
             .weight(input_if.weight),
             .ints(input_if.ints),
