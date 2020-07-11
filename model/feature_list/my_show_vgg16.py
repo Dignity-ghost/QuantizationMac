@@ -28,7 +28,16 @@ batch_size = 25
 set_num = len([os.path.join(val_root,img) for img in os.listdir(val_root)])
 use_gpu = torch.cuda.is_available()
 #torch.set_default_tensor_type('torch.cuda.HalfTensor')
-div_num = 128
+
+
+def draw_hist(arr, layername):
+    array = arr.cpu().numpy()
+    array = abs(array)
+    array_flatten = array.flatten() 
+    bin_pos = np.logspace(-16,16,33,base=2)
+    plt.hist(array_flatten, bins = bin_pos)
+    plt.savefig('E:\\project\\QuantizationMac\\model\\feature_list\\summary\\'+layername+'_hist.png')
+
 
 val_transform = transforms.Compose([
         transforms.Resize(224),
@@ -37,22 +46,6 @@ val_transform = transforms.Compose([
         transforms.Normalize(mean=[0.485, 0.456, 0.406],
                     	     std=[0.229, 0.224, 0.225])
     ])
-
-
-def find_peek(x):
-    if torch.max(x) > abs(torch.min(x)):
-        return torch.max(x) / div_num
-    else:
-        return abs(torch.min(x)) / div_num
-
-def draw_hist(arr, layername):
-    array = arr.cpu().numpy()
-    array_flatten = array.flatten() 
-    bin_list = np.logspace(-8,9,18,base=2)
-    plt.hist(array_flatten, bins = bin_list)
-    plt.savefig('E:\\project\\QuantizationMac\\model\\feature_list\\summary\\'+layername+'_hist.png')
-
-
 
 
 class Mydataset(Dataset):
@@ -89,32 +82,25 @@ val_dataset = Mydataset(val_root,label_path,val_transform)
 val_dataset_loader = data.DataLoader(val_dataset,batch_size, shuffle=False,num_workers=0)   
 
 
-class int_ReLU(nn.Module):
+class hist_ReLU(nn.Module):
 
-    def __init__(self, div, layer_order, batch_order):
-        super(int_ReLU, self).__init__()
-        self.div = div
+    def __init__(self, layer_order, batch_order):
+        super(hist_ReLU, self).__init__()
         self.layer_order = layer_order
         self.batch_order = batch_order
         self.main = nn.Sequential(nn.ReLU(inplace=True))
 
     def forward(self, input):
         input = self.main(input)
-        #input = input.cpu()
         array = input.cpu().numpy()
         np.save('E:\/project\/QuantizationMac\/model\/feature_list\/'+str(self.layer_order)+'\/'+str(self.batch_order)+'_batch_'+str(self.layer_order)+'_layer.npy', array)
-        #div_cp = self.div.cpu()
-        #div_cp = cp.asarray(div_cp)
         input = fromDlpack(to_dlpack(input))
-        #input = input / div_cp
-        #input = cp.trunc(input)
-        #input[input > (div_num - 1)] = cp.trunc(input[input > (div_num - 1)] / (2**cp.trunc(cp.log2(input[input > (div_num - 1)]) - cp.log2(div_num-1))) ) * (2**cp.trunc(cp.log2(input[input > (div_num - 1)]) - cp.log2(div_num-1)))
-        #input = input * div_cp
+        
         return from_dlpack(toDlpack(input))
 
 
 class My_vgg16(nn.Module):
-    def __init__(self, peek_list, batch_num, num_classes=1000, init_weights=False):
+    def __init__(self, batch_num, num_classes=1000, init_weights=False):
 
         super(My_vgg16, self).__init__()
 
@@ -122,63 +108,63 @@ class My_vgg16(nn.Module):
 
             nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             
-            int_ReLU(peek_list[0], 1, batch_num),
+            hist_ReLU(1, batch_num),
             
             nn.Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[1], 2, batch_num),
+            hist_ReLU(2, batch_num),
 
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[2], 3, batch_num),
+            hist_ReLU(3, batch_num),
 
             nn.Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[3], 4, batch_num),
+            hist_ReLU(4, batch_num),
 
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[4], 5, batch_num),
+            hist_ReLU(5, batch_num),
 
             nn.Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[5], 6, batch_num),
+            hist_ReLU(6, batch_num),
 
             nn.Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[6], 7, batch_num),
+            hist_ReLU(7, batch_num),
 
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[7], 8, batch_num),
+            hist_ReLU(8, batch_num),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[8], 9, batch_num),
+            hist_ReLU(9, batch_num),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[9], 10, batch_num),
+            hist_ReLU(10, batch_num),
 
             nn.MaxPool2d(kernel_size=2, stride=1, padding=1, dilation=1, ceil_mode=False),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[10], 11, batch_num),
+            hist_ReLU(11, batch_num),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[11], 12, batch_num),
+            hist_ReLU(12, batch_num),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(peek_list[12], 13, batch_num),
+            hist_ReLU(13, batch_num),
 
             nn.MaxPool2d(kernel_size=2, stride=1, padding=0, dilation=1, ceil_mode=False),
             
@@ -188,13 +174,13 @@ class My_vgg16(nn.Module):
 
             nn.Linear(512 * 7 * 7, 4096),
 
-            int_ReLU(peek_list[13], 14, batch_num),
+            hist_ReLU(14, batch_num),
 
             nn.Dropout(p=0.5),
 
             nn.Linear(4096, 4096),
 
-            int_ReLU(peek_list[14], 15, batch_num),
+            hist_ReLU(15, batch_num),
 
             nn.Dropout(p=0.5),
 
@@ -214,7 +200,7 @@ class My_vgg16(nn.Module):
  
 model_vgg = models.vgg16(pretrained=True)
 pretrained_dict = model_vgg.state_dict()
-
+pretrained_dict = {k: v for k,v in pretrained_dict.items()}
 
 pretrained_dict = {k: v for k,v in pretrained_dict.items()}
 for k in pretrained_dict:
@@ -227,30 +213,29 @@ for k in pretrained_dict:
         draw_hist(pretrained_dict[k], layer_order)
 
 
+
+
 top1_rate = 0
 top5_rate = 0
 
 for i,[data,labels] in enumerate(val_dataset_loader):
-    my_vgg = My_vgg16(peek_list, i)
+    my_vgg = My_vgg16(i)
     my_dict = my_vgg.state_dict()
     my_dict.update(pretrained_dict)
     my_vgg.load_state_dict(my_dict)
+
     my_vgg.eval()
     with torch.no_grad():
         input = Variable(data)
         if use_gpu:
             input = input.cuda()
-            #print(input.dtype)
             my_vgg = my_vgg.cuda()
         output = my_vgg(input)
-        #print("out type", output.dtype)
 
 
     out = output.cuda().data.cpu().numpy()
-#    out = output.numpy()
     out_index = np.argsort(-out,axis=1)
-    groundtruth = labels.cpu().numpy()
-#    groundtruth = labels.numpy()
+    groundtruth = labels.detach().numpy()
 
     for k in range(batch_size):
         pred = out_index[k]
