@@ -1,27 +1,32 @@
-`ifndef MY_DRIVER__SV
-`define MY_DRIVER__SV
-class my_driver extends uvm_driver#(my_transaction);
+`ifndef MAC_DRIVER__SV
+`define MAC_DRIVER__SV
+class mac_driver extends uvm_driver#(mac_transaction);
 
-   virtual my_if vif;
+   virtual mac_if vif;
 
-   `uvm_component_utils(my_driver)
-   function new(string name = "my_driver", uvm_component parent = null);
+   `uvm_component_utils(mac_driver)
+   function new(string name = "mac_driver", uvm_component parent = null);
       super.new(name, parent);
    endfunction
 
    virtual function void build_phase(uvm_phase phase);
       super.build_phase(phase);
-      if(!uvm_config_db#(virtual my_if)::get(this, "", "vif", vif))
-         `uvm_fatal("my_driver", "virtual interface must be set for vif!!!")
+      if(!uvm_config_db#(virtual mac_if)::get(this, "", "vif", vif))
+         `uvm_fatal("mac_driver", "virtual interface must be set for vif!!!")
    endfunction
 
    extern task main_phase(uvm_phase phase);
-   extern task drive_one_pkt(my_transaction tr);
+   extern task drive_one_pkt(mac_transaction tr);
 endclass
 
-task my_driver::main_phase(uvm_phase phase);
-   vif.data <= 8'b0;
-   vif.valid <= 1'b0;
+task mac_driver::main_phase(uvm_phase phase);
+
+   vif.mode <= 2'b0;
+   vif.value <= 16'b0;
+   vif.weight <= 16'b0;
+   vif.ints <= 23'b0;
+   vif.fps <= 31'b0;
+
    while(!vif.rst_n)
       @(posedge vif.clk);
    while(1) begin
@@ -31,22 +36,19 @@ task my_driver::main_phase(uvm_phase phase);
    end
 endtask
 
-task my_driver::drive_one_pkt(my_transaction tr);
-   byte unsigned     data_q[];
-   int  data_size;
+task mac_driver::drive_one_pkt(mac_transaction tr);
    
-   data_size = tr.pack_bytes(data_q) / 8; 
-   `uvm_info("my_driver", "begin to drive one pkt", UVM_LOW);
-   repeat(3) @(posedge vif.clk);
-   for ( int i = 0; i < data_size; i++ ) begin
-      @(posedge vif.clk);
-      vif.valid <= 1'b1;
-      vif.data <= data_q[i]; 
-   end
+   `uvm_info("mac_driver", "begin to drive one pkt", UVM_LOW);
 
-   @(posedge vif.clk);
-   vif.valid <= 1'b0;
-   `uvm_info("my_driver", "end drive one pkt", UVM_LOW);
+   repeat (3) @(posedge vif.clk);
+   # 10;
+   vif.mode <= tr.mode;
+   vif.value <= tr.value;
+   vif.weight <= tr.weight;
+   vif.ints <= tr.ints;
+   vif.fps <= tr.fps;
+
+   `uvm_info("mac_driver", "end drive one pkt", UVM_LOW);
 endtask
 
 

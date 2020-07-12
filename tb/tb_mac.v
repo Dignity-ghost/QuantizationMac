@@ -1,55 +1,45 @@
-module tb_mac(
-
-);
-
-reg                 clk;
-reg                 rst_n;
-reg                 fp_sel;
-reg     [15: 0]     op1;
-reg     [15: 0]     op2;
-reg     [15: 0]     ops;
-wire    [ 7: 0]     result_int8;
-wire    [15: 0]     result_fp16;
+module tb_mac();
 
 
+// port **********************************************************
+reg     [ 3: 0]     mode;
+reg     [15: 0]     value, weight;
+reg     [23: 0]     ints;   // int8 bias in
+reg     [30: 0]     fps;    // fp16 bias in
+wire    [23: 0]     intr;   // int8 result
+wire    [30: 0]     fpr;    // fp16 bias out
 
-
-initial begin
-    clk     =  1'b0;
-    rst_n   =  1'b0;
-    fp_sel  =  1'b0;
-    #1
-    op1     = 16'h0;
-    op2     = 16'h0;
-    ops     = 16'h0;
-    #10
-    rst_n   = 1'b1;
-    op1 = 16'h20;
-    op2 = 16'h20;
-    ops = 16'h20;
-    #5
-    op1 = 16'h22;
-    op2 = 16'h24;
-    ops = 16'h26;
-    #10
-    op1 = 16'h34;
-    op2 = 16'h55;
-    ops = 16'h74;
-end
-
-always #5 clk = ~clk;
+// parameter *****************************************************
+parameter                   mode_fp     = 0;
+parameter                   mode_int_s  = 1;
+parameter                   mode_int_m  = 2;
+parameter                   mode_int_l  = 3;
+parameter                   exp_zero    = 5'h0c;
 
 
 mac mac(
-    .clk(clk), 
-    .rst_n(rst_n),
-    .fp_sel(fp_sel),
-    .op1(op1), 
-    .op2(op2), 
-    .ops(ops),
-    .result_int8(result_int8),
-    .result_fp16(result_fp16)
+    .mode(mode),
+    .value(value),
+    .weight(weight),
+    .ints(ints),
+    .fps(fps),
+    .intr(intr),
+    .fpr(fpr)
 );
 
+initial begin
+    mode    =   1'b1 << mode_int_s;
+    value   =   16'he678;
+    weight  =   16'h6789;
+    ints    =   24'h12345678;
+    fps     =   { 5'h19, 13'h0c56 };
+    #1
+    mode    =   1'b1 << mode_int_m;
+    #1
+    mode    =   1'b1 << mode_int_l;
+    #1
+    mode    =   1'b1 << mode_fp;
+
+end
 
 endmodule

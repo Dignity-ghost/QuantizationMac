@@ -1,12 +1,12 @@
-`ifndef MY_AGENT__SV
-`define MY_AGENT__SV
+`ifndef MAC_AGENT__SV
+`define MAC_AGENT__SV
 
-class my_agent extends uvm_agent ;
-   my_sequencer  sqr;
-   my_driver     drv;
-   my_monitor    mon;
+class mac_agent extends uvm_agent ;
+   mac_sequencer  sqr;
+   mac_driver     drv;
+   mac_monitor    mon;
    
-   uvm_analysis_port #(my_transaction)  ap;
+   uvm_analysis_port #(mac_transaction)  ap;
    
    function new(string name, uvm_component parent);
       super.new(name, parent);
@@ -15,20 +15,20 @@ class my_agent extends uvm_agent ;
    extern virtual function void build_phase(uvm_phase phase);
    extern virtual function void connect_phase(uvm_phase phase);
 
-   `uvm_component_utils(my_agent)
+   `uvm_component_utils(mac_agent)
 endclass 
 
 
-function void my_agent::build_phase(uvm_phase phase);
+function void mac_agent::build_phase(uvm_phase phase);
    super.build_phase(phase);
    if (is_active == UVM_ACTIVE) begin
-      sqr = my_sequencer::type_id::create("sqr", this);
-      drv = my_driver::type_id::create("drv", this);
+      sqr = mac_sequencer::type_id::create("sqr", this);
+      drv = mac_driver::type_id::create("drv", this);
    end
-   mon = my_monitor::type_id::create("mon", this);
+   mon = mac_monitor::type_id::create("mon", this);
 endfunction 
 
-function void my_agent::connect_phase(uvm_phase phase);
+function void mac_agent::connect_phase(uvm_phase phase);
    super.connect_phase(phase);
    if (is_active == UVM_ACTIVE) begin
       drv.seq_item_port.connect(sqr.seq_item_export);
