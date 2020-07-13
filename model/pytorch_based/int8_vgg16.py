@@ -27,7 +27,7 @@ batch_size = 10
 set_num = len([os.path.join(val_root,img) for img in os.listdir(val_root)])
 use_gpu = torch.cuda.is_available()
 #torch.set_default_tensor_type('torch.cuda.HalfTensor')
-div_num = 128
+
 #quantization list
 filter_quanlist = [-7, -7, -7, -8, -8, -8, -7, -8, -8, -9, -8, -9, -9, -11, -10, -9]
 bias_quanlist   = [-6, -7, -8, -7, -8, -8, -8, -8, -6, -7, -8, -6, -7, -10, -9, -10]
