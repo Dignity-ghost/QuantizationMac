@@ -20,8 +20,8 @@ from cupy.core.dlpack import fromDlpack
 from torch.utils.dlpack import to_dlpack
 from torch.utils.dlpack import from_dlpack
 
-val_root = "E:\\project\\dataset\\ILSVRC2012_img_val\\"
-#val_root = "E:\\project\\dataset\\val100\\"
+#val_root = "E:\\project\\dataset\\ILSVRC2012_img_val\\"
+val_root = "E:\\project\\dataset\\val100\\"
 label_path = "E:\\project\\dataset\\val.txt"
 batch_size = 25
 set_num = len([os.path.join(val_root,img) for img in os.listdir(val_root)])
@@ -92,10 +92,10 @@ class Mydataset(Dataset):
 val_dataset = Mydataset(val_root,label_path,val_transform)
 val_dataset_loader = data.DataLoader(val_dataset,batch_size, shuffle=False,num_workers=0)   
 
-class int_ReLU(nn.Module):
+class f16_ReLU(nn.Module):
 
     def __init__(self):
-        super(int_ReLU, self).__init__()
+        super(f16_ReLU, self).__init__()
         self.main = nn.Sequential(nn.ReLU(inplace=True))
 
     def forward(self, input):
@@ -128,63 +128,63 @@ class My_vgg16(nn.Module):
 
             nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             
-            int_ReLU(),
+            f16_ReLU(),
             
             nn.Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.MaxPool2d(kernel_size=2, stride=1, padding=1, dilation=1, ceil_mode=False),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.MaxPool2d(kernel_size=2, stride=1, padding=0, dilation=1, ceil_mode=False),
             
@@ -194,13 +194,13 @@ class My_vgg16(nn.Module):
 
             nn.Linear(512 * 7 * 7, 4096),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Dropout(p=0.5),
 
             nn.Linear(4096, 4096),
 
-            int_ReLU(),
+            f16_ReLU(),
 
             nn.Dropout(p=0.5),
 
