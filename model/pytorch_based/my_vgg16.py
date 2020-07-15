@@ -15,8 +15,8 @@ import os
 import re
 from PIL import Image
 
-#val_root = "E:\\project\\dataset\\ILSVRC2012_img_val\\"
-val_root = "E:\\project\\dataset\\val100\\"
+val_root = "E:\\project\\dataset\\ILSVRC2012_img_val\\"
+#val_root = "E:\\project\\dataset\\val100\\"
 label_path = "E:\\project\\dataset\\val.txt"
 batch_size = 25
 set_num = len([os.path.join(val_root,img) for img in os.listdir(val_root)])
@@ -212,8 +212,14 @@ for i,[data,labels] in enumerate(val_dataset_loader):
         if groundtruth[k] in pred[0:5]:
             top5_rate = top5_rate + 1
 
+    if i%50 == 0:
+        print("Dealing progess:", i/(50000/batch_size)*100,'%')
+
+print("correct_top1 number is", top1_rate)
 top1_rate = top1_rate / set_num
 print("top1 rate is", top1_rate)
+
+print("correct_top5 number is", top5_rate)
 top5_rate = top5_rate / set_num
 print("top5 rate is", top5_rate)
 
