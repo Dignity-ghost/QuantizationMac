@@ -130,7 +130,7 @@ class My_vgg16(nn.Module):
 
             nn.ReLU(),
 
-            nn.MaxPool2d(kernel_size=2, stride=1, padding=1, dilation=1, ceil_mode=False),
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
@@ -144,7 +144,7 @@ class My_vgg16(nn.Module):
 
             nn.ReLU(),
 
-            nn.MaxPool2d(kernel_size=2, stride=1, padding=0, dilation=1, ceil_mode=False),
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
             
             nn.AdaptiveAvgPool2d((7,7)))
 
