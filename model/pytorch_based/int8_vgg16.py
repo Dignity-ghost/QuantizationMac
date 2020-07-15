@@ -29,9 +29,8 @@ use_gpu = torch.cuda.is_available()
 #torch.set_default_tensor_type('torch.cuda.HalfTensor')
 
 #quantization list
-filter_quanlist = [-7, -7, -7, -8, -8, -8, -7, -8, -8, -9, -8, -9, -9, -11, -10, -9]
+filter_quanlist = [-7, -7, -7, -8, -7, -8, -7, -8, -8, -9, -8, -9, -9, -11, -11, -9]
 bias_quanlist   = [-6, -7, -8, -7, -8, -8, -8, -8, -6, -7, -8, -6, -7, -10, -9, -10]
-#input_quanlist  = [0, -4, -3, -2, -2, -3, -3, -3, -3, -3, -3, -3, -3, -3, -4, -5]
 
 
 val_transform = transforms.Compose([
@@ -117,7 +116,7 @@ class My_vgg16(nn.Module):
     #def __init__(self, input_quanlist, num_classes=1000, init_weights=False):
     def __init__(self, num_classes=1000, init_weights=False):
 
-        input_quanlist  = [0, -4, -3, -2, -2, -3, -3, -3, -3, -3, -3, -3, -3, -3, -4, -5]
+        input_quanlist  = [0, -4, -3, -2, -2, -2, -2, -3, -3, -3, -3, -3, -3, -3, -4, -5]
 
         super(My_vgg16, self).__init__()
 
