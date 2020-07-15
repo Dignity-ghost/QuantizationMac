@@ -218,8 +218,14 @@ for i,[data,labels] in enumerate(val_dataset_loader):
         if groundtruth[k] in pred[0:5]:
             top5_rate = top5_rate + 1
 
+    if i%50 == 0:
+        print("Dealing progess:", i/(50000/batch_size)*100,'%')
+
+print("correct_top1 number is", top1_rate)
 top1_rate = top1_rate / set_num
 print("top1 rate is", top1_rate)
+
+print("correct_top5 number is", top5_rate)
 top5_rate = top5_rate / set_num
 print("top5 rate is", top5_rate)
 
