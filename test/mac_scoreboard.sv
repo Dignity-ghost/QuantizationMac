@@ -37,7 +37,7 @@ task mac_scoreboard::main_phase(uvm_phase phase);
             tmp_tran = actual_queue.pop_front();
             result_int = get_expect.intr == tmp_tran.intr;
             result_fp = get_expect.fpr == tmp_tran.fpr;
-            result = (get_expect.mode == 'b0001) ? result_fp : result_int;
+            result = (get_expect.mode == 'b1) ? result_fp : result_int;
             if(result) begin 
                `uvm_info("mac_scoreboard", "Compare SUCCESSFULLY", UVM_LOW);
             end

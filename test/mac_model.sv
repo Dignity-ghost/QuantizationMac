@@ -39,8 +39,8 @@ endtask
 
 function mac_model::mac(mac_transaction tr_i, mac_transaction tr_o);
 
-   // int input signed expansion , All zero means 0, no expansion
-   bit signed [8 : 0] int_weight = (tr_i.weight == 'b0) ? 9'b0 : {tr_i.weight[7], tr_i.weight[7: 0]};
+   // int input signed expansion
+   bit signed [8 : 0] int_weight = {tr_i.weight[7], tr_i.weight[7: 0]};
    bit signed [8 : 0] int_value  = {1'b0, tr_i.value[7: 0]};
    bit signed [17: 0] int_intr;
 
@@ -96,21 +96,14 @@ function mac_model::mac(mac_transaction tr_i, mac_transaction tr_o);
    tr_o.copy(tr_i);
 
    //write the final output
-   if (tr_i.mode == 4'b0001) begin //fp
+   if (tr_i.mode == 'b1) begin //fp16
       tr_o.fpr =  {fpr_e, fpr_m};
-   end else if (tr_i.mode == 4'b0010) begin // int * 1
+   end else begin // int
       int_intr = int_value * int_weight;
-   end else if (tr_i.mode == 4'b0100) begin // int * 4 
-      int_intr = int_value * int_weight*4;
-   end else if (tr_i.mode == 4'b1000) begin // int * 16
-      int_intr = int_value * int_weight * 16;
-   end else begin // invalid
-      tr_o.fpr = 'b0;
-      tr_o.intr = 'b0;
    end
 
    // add the int bias to the mul of int
-   tr_o.intr = {{6{int_intr[17]}}, int_intr} + tr_i.ints;
+   tr_o.intr = {{10{int_intr[17]}}, int_intr[17: 0]} + tr_i.ints;
 
 endfunction
 `endif
