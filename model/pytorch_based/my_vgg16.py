@@ -131,7 +131,7 @@ class My_vgg16(nn.Module):
 
             nn.ReLU(),
 
-            nn.MaxPool2d(kernel_size=2, stride=1, padding=1, dilation=1, ceil_mode=False),
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
 
             nn.Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
 
@@ -145,25 +145,25 @@ class My_vgg16(nn.Module):
 
             nn.ReLU(),
 
-            nn.MaxPool2d(kernel_size=2, stride=1, padding=0, dilation=1, ceil_mode=False),
+            nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False),
             
             nn.AdaptiveAvgPool2d((7,7)))
 
         self.classifier = nn.Sequential(
 
-            nn.Linear(512 * 7 * 7, 4096),
+            nn.Linear(25088, 4096, bias=True),
 
             nn.ReLU(True),
 
-            nn.Dropout(p=0.5),
+            nn.Dropout(p=0.5, inplace=False),
 
-            nn.Linear(4096, 4096),
+            nn.Linear(4096, 4096, bias=True),
 
             nn.ReLU(True),
 
-            nn.Dropout(p=0.5),
+            nn.Dropout(p=0.5, inplace=False),
 
-            nn.Linear(4096, num_classes),
+            nn.Linear(4096, num_classes, bias=True),
         )
 
         if init_weights:
