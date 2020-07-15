@@ -20,8 +20,8 @@ from cupy.core.dlpack import fromDlpack
 from torch.utils.dlpack import to_dlpack
 from torch.utils.dlpack import from_dlpack
 
-#val_root = "E:\\project\\dataset\\ILSVRC2012_img_val\\"
-val_root = "E:\\project\\dataset\\val100\\"
+val_root = "E:\\project\\dataset\\ILSVRC2012_img_val\\"
+#val_root = "E:\\project\\dataset\\val100\\"
 label_path = "E:\\project\\dataset\\val.txt"
 batch_size = 25
 set_num = len([os.path.join(val_root,img) for img in os.listdir(val_root)])
