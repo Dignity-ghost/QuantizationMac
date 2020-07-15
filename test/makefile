@@ -1,15 +1,22 @@
 
+CC=gcc-4.4
+CPP=g++-4.4
+SEED=$(shell head -4 /dev/urandom | od -N 4 -D -A n |awk '{gsub(/ /,"")}1')
+TIMEOUT=10000000000
 
-
-all: clean comp sim
+all: clog comp sim
 
 comp:
-	vcs -full64 -sverilog -cpp g++-4.4 -cc gcc-4.4 -ntb_opts uvm \
-		+timescale=1ns/1ps \
-		top_tb.sv base_test.sv ./mac*.sv ../rtl/mac_ve5.v
+	vcs -full64 -sverilog -cpp $(CPP) -cc $(CC) \
+		-timescale=1ns/1ps  -ntb_opts uvm \
+		-f files.f -l mac_ve5_1intmode.comp.log
 
 sim:
-	./simv +UVM_TIMEOUT=100000000000
+	./simv +UVM_TIMEOUT=$(TIMEOUT) +ntb_random_seed=${SEED} \
+		-l mac_ve5_1intmode.sim.seed_$(SEED).log
 
 clean:
 	rm -rf csrc simv.daidir simv ucli.key vc_hdrs.h
+
+clog:
+	rm -rf csrc simv.daidir simv ucli.key vc_hdrs.h *.log
