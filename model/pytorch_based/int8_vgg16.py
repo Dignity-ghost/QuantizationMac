@@ -116,7 +116,7 @@ class My_vgg16(nn.Module):
     #def __init__(self, input_quanlist, num_classes=1000, init_weights=False):
     def __init__(self, num_classes=1000, init_weights=False):
 
-        input_quanlist  = [0, -4, -3, -2, -2, -2, -2, -3, -3, -3, -3, -3, -3, -3, -4, -5]
+        input_quanlist  = [0, -4, -3, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -4, -5]
 
         super(My_vgg16, self).__init__()
 
