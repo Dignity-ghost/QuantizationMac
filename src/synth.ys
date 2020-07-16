@@ -1,0 +1,18 @@
+# read design
+read_verilog mac_ve5_1intmode.v
+hierarchy -check
+
+# high-level synthesis
+proc; opt; fsm; opt; memory; opt
+
+# low-level synthesis
+techmap; opt
+
+# map to target architecture
+#dfflibmap -liberty typical.lib
+#abc -liberty typical.lib
+
+# split larger signals
+splitnets -ports; opt
+
+synth
