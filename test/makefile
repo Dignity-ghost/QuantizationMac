@@ -1,6 +1,6 @@
 
-CC=gcc-4.4  #去掉-4.4即可
-CPP=g++-4.4
+CC=gcc  #去掉-4.4即可
+CPP=g++
 SEED=$(shell head -4 /dev/urandom | od -N 4 -D -A n |awk '{gsub(/ /,"")}1')
 TIMEOUT=10000000000
 
