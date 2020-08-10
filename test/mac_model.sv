@@ -11,11 +11,26 @@ class mac_model extends uvm_component;
    extern virtual  task main_phase(uvm_phase phase);
    extern function mac(mac_transaction tr_i, mac_transaction tr_o);
 
+   mac_transaction tr;
+   mac_transaction new_tr;
+
+   covergroup mac_cov;
+      coverpoint tr.mode;
+      coverpoint tr.value;
+      coverpoint tr.weight;
+      coverpoint tr.ints;
+      coverpoint tr.fps;
+      coverpoint tr.intr;
+      coverpoint tr.fpr;
+   endgroup
+
    `uvm_component_utils(mac_model)
 endclass 
 
 function mac_model::new(string name, uvm_component parent);
    super.new(name, parent);
+
+   mac_cov = new();
 endfunction 
 
 function void mac_model::build_phase(uvm_phase phase);
@@ -25,11 +40,12 @@ function void mac_model::build_phase(uvm_phase phase);
 endfunction
 
 task mac_model::main_phase(uvm_phase phase);
-   mac_transaction tr;
-   mac_transaction new_tr;
+   
+
    super.main_phase(phase);
    while(1) begin
       port.get(tr);
+      mac_cov.sample();
       new_tr = new("new_tr");
       mac(tr, new_tr);
       `uvm_info("mac_model", "get one transaction, calculated!", UVM_LOW);
