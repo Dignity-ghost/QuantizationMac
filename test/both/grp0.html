@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Author" content="<username>"> <meta name="GENERATOR" content="urg/version [en] (platform name) [urg]">
+<title>Unified Coverage Report :: Group :: $unit::mac_model::mac_cov</title>
+<link type="text/css" rel="stylesheet" href="css/.urg.css">
+<link type="text/css" rel="stylesheet" href="css/.layout.css">
+<link type="text/css" rel="stylesheet" href="css/.breadcrumb.css">
+<script type="text/javascript" src="js/.jquery.js"></script>
+<script type="text/javascript" src="js/.jquery-ui.js"></script>
+<script type="text/javascript" src="js/.sortable.js"></script>
+<script type="text/javascript" src="js/.layout.js"></script>
+<script type="text/javascript" src="js/.breadcrumb.js"></script>
+<script type="text/javascript">
+var layout, westLayout, centerLayout;
+$(document).ready(function () {
+  if ($("#north-bread-crumb")) {
+    $("#north-bread-crumb").jBreadCrumb({easing:'swing'})
+  }
+  layout = $("body").layout({ 
+    resizable: true,
+    spacing_open: 4,
+    spacing_closed: 4,
+    north: {
+      size: 76
+    },
+    south: {
+      size: 45,
+      initClosed: true
+    },
+    west: {
+      size: 500,
+      resizable: true,
+      initClosed: false
+    }
+  });
+  centerLayout = $('div.ui-layout-center').layout({
+    north__paneSelector: ".ui-layout-center-inner-north",
+    center__paneSelector: ".ui-layout-center-inner-center", 
+    north__size: 50,
+    spacing_open: 4,
+    spacing_closed: 4
+  });
+});
+</script>
+</head>
+<body onLoad="initPage();"><div class="ui-layout-north">
+<div class="logo"></div>
+<center class="pagetitle">Group : $unit::mac_model::mac_cov</center>
+<div align="center"><a href="dashboard.html" ><b>dashboard</b></a> | <a href="hierarchy.html" ><b>hierarchy</b></a> | <a href="modlist.html" ><b>modlist</b></a> | <a href="groups.html" ><b>groups</b></a> | <a href="tests.html" ><b>tests</b></a> | asserts</div>
+
+</div>
+<div class="ui-layout-west">
+<div>
+<div class=modhdr>
+<br clear=all>
+<span class=titlename>Group : <a href="#"  onclick="showContent('$unit::mac_model::mac_cov')">$unit::mac_model::mac_cov</a></span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td><b>SCORE</b></td><td>WEIGHT</td><td>GOAL</td><td>AT LEAST</td><td>AUTO BIN MAX</td><td>PRINT MISSING</td></tr><tr>
+<td class="s7 cl rt"> 71.88</td>
+<td class="wht cl rt">1     </td>
+<td class="wht cl rt">100   </td>
+<td class="wht cl rt">1     </td>
+<td class="wht cl rt">64    </td>
+<td class="wht cl rt">64    </td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Source File(s) : </span>
+<br clear=all>
+<a href="file:///home/jinhao0521/QuantizationMac/test/mac_model.sv" >/home/jinhao0521/QuantizationMac/test/mac_model.sv</a><br clear=all>
+<br clear=all>
+</div>
+<hr>
+<br clear=all>
+<span class=repname>Summary for Group   $unit::mac_model::mac_cov
+</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s6">
+<td><a href="#var_tbl_$unit::mac_model::mac_cov" >Variables</a></td>
+<td class="rt">386</td>
+<td class="rt">126</td>
+<td class="rt">260</td>
+<td class="rt">71.88 </td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class="repname" id="var_tbl_$unit::mac_model::mac_cov">Variables for Group  $unit::mac_model::mac_cov
+</span>
+<br clear=all>
+<table align=left class="sortable">
+<tr class="sortablehead">
+<td class="alfsrt">VARIABLE</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td><td>GOAL</td><td>WEIGHT</td><td>AT LEAST</td><td>AUTO BIN MAX</td><td>COMMENT</td></tr><tr class="s10">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.mode" >tr.mode</a></td>
+<td class="rt">2</td>
+<td class="rt">0</td>
+<td class="rt">2</td>
+<td class="rt">100.00</td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">2</td>
+<td></td>
+</tr><tr class="s10">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.value" >tr.value</a></td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">64</td>
+<td></td>
+</tr><tr class="s10">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.weight" >tr.weight</a></td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">64</td>
+<td></td>
+</tr><tr class="s10">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.ints" >tr.ints</a></td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">64</td>
+<td></td>
+</tr><tr class="s10">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.fps" >tr.fps</a></td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">64</td>
+<td></td>
+</tr><tr class="s0">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.intr" >tr.intr</a></td>
+<td class="rt">64</td>
+<td class="rt">63</td>
+<td class="rt">1</td>
+<td class="rt">1.56  </td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">64</td>
+<td></td>
+</tr><tr class="s0">
+<td><a href="#inst_tag_$unit::mac_model::mac_cov.tr.fpr" >tr.fpr</a></td>
+<td class="rt">64</td>
+<td class="rt">63</td>
+<td class="rt">1</td>
+<td class="rt">1.56  </td>
+<td class="rt">100</td>
+<td class="rt">1</td>
+<td class="rt">1</td>
+<td class="rt">64</td>
+<td></td>
+</tr></table><br clear=all>
+</div>
+</div>
+<div class="ui-layout-center">
+<div class="ui-layout-center-inner-center">
+<div>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.mode"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.mode">Summary for Variable tr.mode</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s10">
+<td>Automatically Generated Bins</td>
+<td class="rt">2</td>
+<td class="rt">0</td>
+<td class="rt">2</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.mode</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Bins</span>
+<br clear=all>
+<table align=left class="sortable">
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0]</td>
+<td class="rt">4993</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[1]</td>
+<td class="rt">5007</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+<hr>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.value"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.value">Summary for Variable tr.value</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s10">
+<td>Automatically Generated Bins</td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.value</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Bins</span>
+<br clear=all>
+<table align=left class="sortable">
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0:1023]</td>
+<td class="rt">156</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[1024:2047]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[2048:3071]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[3072:4095]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[4096:5119]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[5120:6143]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[6144:7167]</td>
+<td class="rt">147</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[7168:8191]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[8192:9215]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[9216:10239]</td>
+<td class="rt">170</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[10240:11263]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[11264:12287]</td>
+<td class="rt">156</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[12288:13311]</td>
+<td class="rt">148</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[13312:14335]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[14336:15359]</td>
+<td class="rt">143</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[15360:16383]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[16384:17407]</td>
+<td class="rt">174</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[17408:18431]</td>
+<td class="rt">185</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[18432:19455]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[19456:20479]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[20480:21503]</td>
+<td class="rt">185</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[21504:22527]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[22528:23551]</td>
+<td class="rt">134</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[23552:24575]</td>
+<td class="rt">173</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[24576:25599]</td>
+<td class="rt">128</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[25600:26623]</td>
+<td class="rt">171</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[26624:27647]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[27648:28671]</td>
+<td class="rt">148</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[28672:29695]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[29696:30719]</td>
+<td class="rt">149</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[30720:31743]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[31744:32767]</td>
+<td class="rt">146</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[32768:33791]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[33792:34815]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[34816:35839]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[35840:36863]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[36864:37887]</td>
+<td class="rt">148</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[37888:38911]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[38912:39935]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[39936:40959]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[40960:41983]</td>
+<td class="rt">170</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[41984:43007]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[43008:44031]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[44032:45055]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[45056:46079]</td>
+<td class="rt">153</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[46080:47103]</td>
+<td class="rt">166</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[47104:48127]</td>
+<td class="rt">138</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[48128:49151]</td>
+<td class="rt">169</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[49152:50175]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[50176:51199]</td>
+<td class="rt">178</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[51200:52223]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[52224:53247]</td>
+<td class="rt">175</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[53248:54271]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[54272:55295]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[55296:56319]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[56320:57343]</td>
+<td class="rt">181</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[57344:58367]</td>
+<td class="rt">166</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[58368:59391]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[59392:60415]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[60416:61439]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[61440:62463]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[62464:63487]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[63488:64511]</td>
+<td class="rt">137</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[64512:65535]</td>
+<td class="rt">149</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+<hr>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.weight"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.weight">Summary for Variable tr.weight</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s10">
+<td>Automatically Generated Bins</td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.weight</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Bins</span>
+<br clear=all>
+<table align=left class="sortable">
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0:1023]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[1024:2047]</td>
+<td class="rt">149</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[2048:3071]</td>
+<td class="rt">167</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[3072:4095]</td>
+<td class="rt">171</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[4096:5119]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[5120:6143]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[6144:7167]</td>
+<td class="rt">169</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[7168:8191]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[8192:9215]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[9216:10239]</td>
+<td class="rt">143</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[10240:11263]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[11264:12287]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[12288:13311]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[13312:14335]</td>
+<td class="rt">167</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[14336:15359]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[15360:16383]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[16384:17407]</td>
+<td class="rt">170</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[17408:18431]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[18432:19455]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[19456:20479]</td>
+<td class="rt">169</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[20480:21503]</td>
+<td class="rt">143</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[21504:22527]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[22528:23551]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[23552:24575]</td>
+<td class="rt">148</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[24576:25599]</td>
+<td class="rt">147</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[25600:26623]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[26624:27647]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[27648:28671]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[28672:29695]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[29696:30719]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[30720:31743]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[31744:32767]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[32768:33791]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[33792:34815]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[34816:35839]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[35840:36863]</td>
+<td class="rt">133</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[36864:37887]</td>
+<td class="rt">156</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[37888:38911]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[38912:39935]</td>
+<td class="rt">169</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[39936:40959]</td>
+<td class="rt">156</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[40960:41983]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[41984:43007]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[43008:44031]</td>
+<td class="rt">164</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[44032:45055]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[45056:46079]</td>
+<td class="rt">175</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[46080:47103]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[47104:48127]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[48128:49151]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[49152:50175]</td>
+<td class="rt">136</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[50176:51199]</td>
+<td class="rt">183</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[51200:52223]</td>
+<td class="rt">157</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[52224:53247]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[53248:54271]</td>
+<td class="rt">146</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[54272:55295]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[55296:56319]</td>
+<td class="rt">174</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[56320:57343]</td>
+<td class="rt">173</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[57344:58367]</td>
+<td class="rt">137</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[58368:59391]</td>
+<td class="rt">132</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[59392:60415]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[60416:61439]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[61440:62463]</td>
+<td class="rt">177</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[62464:63487]</td>
+<td class="rt">174</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[63488:64511]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[64512:65535]</td>
+<td class="rt">139</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+<hr>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.ints"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.ints">Summary for Variable tr.ints</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s10">
+<td>Automatically Generated Bins</td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.ints</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Bins</span>
+<br clear=all>
+<table align=left class="sortable">
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0:4194303]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[4194304:8388607]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[8388608:12582911]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[12582912:16777215]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[16777216:20971519]</td>
+<td class="rt">147</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[20971520:25165823]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[25165824:29360127]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[29360128:33554431]</td>
+<td class="rt">153</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[33554432:37748735]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[37748736:41943039]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[41943040:46137343]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[46137344:50331647]</td>
+<td class="rt">160</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[50331648:54525951]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[54525952:58720255]</td>
+<td class="rt">146</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[58720256:62914559]</td>
+<td class="rt">173</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[62914560:67108863]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[67108864:71303167]</td>
+<td class="rt">153</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[71303168:75497471]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[75497472:79691775]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[79691776:83886079]</td>
+<td class="rt">187</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[83886080:88080383]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[88080384:92274687]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[92274688:96468991]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[96468992:100663295]</td>
+<td class="rt">143</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[100663296:104857599]</td>
+<td class="rt">170</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[104857600:109051903]</td>
+<td class="rt">157</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[109051904:113246207]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[113246208:117440511]</td>
+<td class="rt">181</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[117440512:121634815]</td>
+<td class="rt">147</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[121634816:125829119]</td>
+<td class="rt">135</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[125829120:130023423]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[130023424:134217727]</td>
+<td class="rt">168</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[134217728:138412031]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[138412032:142606335]</td>
+<td class="rt">146</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[142606336:146800639]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[146800640:150994943]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[150994944:155189247]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[155189248:159383551]</td>
+<td class="rt">136</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[159383552:163577855]</td>
+<td class="rt">153</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[163577856:167772159]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[167772160:171966463]</td>
+<td class="rt">186</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[171966464:176160767]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[176160768:180355071]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[180355072:184549375]</td>
+<td class="rt">167</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[184549376:188743679]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[188743680:192937983]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[192937984:197132287]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[197132288:201326591]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[201326592:205520895]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[205520896:209715199]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[209715200:213909503]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[213909504:218103807]</td>
+<td class="rt">167</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[218103808:222298111]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[222298112:226492415]</td>
+<td class="rt">169</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[226492416:230686719]</td>
+<td class="rt">172</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[230686720:234881023]</td>
+<td class="rt">124</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[234881024:239075327]</td>
+<td class="rt">153</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[239075328:243269631]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[243269632:247463935]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[247463936:251658239]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[251658240:255852543]</td>
+<td class="rt">143</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[255852544:260046847]</td>
+<td class="rt">157</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[260046848:264241151]</td>
+<td class="rt">157</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[264241152:268435455]</td>
+<td class="rt">180</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+<hr>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.fps"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.fps">Summary for Variable tr.fps</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s10">
+<td>Automatically Generated Bins</td>
+<td class="rt">64</td>
+<td class="rt">0</td>
+<td class="rt">64</td>
+<td class="rt">100.00</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.fps</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Bins</span>
+<br clear=all>
+<table align=left class="sortable">
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0:4095]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[4096:8191]</td>
+<td class="rt">148</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[8192:12287]</td>
+<td class="rt">156</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[12288:16383]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[16384:20479]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[20480:24575]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[24576:28671]</td>
+<td class="rt">172</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[28672:32767]</td>
+<td class="rt">124</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[32768:36863]</td>
+<td class="rt">162</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[36864:40959]</td>
+<td class="rt">188</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[40960:45055]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[45056:49151]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[49152:53247]</td>
+<td class="rt">182</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[53248:57343]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[57344:61439]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[61440:65535]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[65536:69631]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[69632:73727]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[73728:77823]</td>
+<td class="rt">152</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[77824:81919]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[81920:86015]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[86016:90111]</td>
+<td class="rt">135</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[90112:94207]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[94208:98303]</td>
+<td class="rt">153</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[98304:102399]</td>
+<td class="rt">159</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[102400:106495]</td>
+<td class="rt">175</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[106496:110591]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[110592:114687]</td>
+<td class="rt">150</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[114688:118783]</td>
+<td class="rt">175</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[118784:122879]</td>
+<td class="rt">170</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[122880:126975]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[126976:131071]</td>
+<td class="rt">176</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[131072:135167]</td>
+<td class="rt">138</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[135168:139263]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[139264:143359]</td>
+<td class="rt">171</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[143360:147455]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[147456:151551]</td>
+<td class="rt">151</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[151552:155647]</td>
+<td class="rt">149</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[155648:159743]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[159744:163839]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[163840:167935]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[167936:172031]</td>
+<td class="rt">145</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[172032:176127]</td>
+<td class="rt">156</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[176128:180223]</td>
+<td class="rt">165</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[180224:184319]</td>
+<td class="rt">144</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[184320:188415]</td>
+<td class="rt">158</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[188416:192511]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[192512:196607]</td>
+<td class="rt">135</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[196608:200703]</td>
+<td class="rt">171</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[200704:204799]</td>
+<td class="rt">154</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[204800:208895]</td>
+<td class="rt">166</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[208896:212991]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[212992:217087]</td>
+<td class="rt">140</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[217088:221183]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[221184:225279]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[225280:229375]</td>
+<td class="rt">164</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[229376:233471]</td>
+<td class="rt">169</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[233472:237567]</td>
+<td class="rt">138</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[237568:241663]</td>
+<td class="rt">173</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[241664:245759]</td>
+<td class="rt">142</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[245760:249855]</td>
+<td class="rt">163</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[249856:253951]</td>
+<td class="rt">155</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[253952:258047]</td>
+<td class="rt">161</td>
+<td class="rt">1</td>
+</tr><tr class="s10">
+<td>auto[258048:262143]</td>
+<td class="rt">141</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+<hr>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.intr"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.intr">Summary for Variable tr.intr</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s0">
+<td>Automatically Generated Bins</td>
+<td class="rt">64</td>
+<td class="rt">63</td>
+<td class="rt">1</td>
+<td class="rt">1.56  </td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.intr</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Uncovered bins</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td><td>NUMBER</td></tr><tr class="s3">
+<td nowrap>[auto[4194304:8388607] - auto[264241152:268435455]]</td>
+<td align=center nowrap>--</td>
+<td align=center nowrap>--</td>
+<td class="rt">63</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Covered bins</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0:4194303]</td>
+<td class="rt">10000</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+<hr>
+<br clear=all>
+<a name="inst_tag_$unit::mac_model::mac_cov.tr.fpr"></a><span class="repname" id="inst_tag_$unit::mac_model::mac_cov.tr.fpr">Summary for Variable tr.fpr</span>
+<br clear=all>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">CATEGORY</td><td>EXPECTED</td><td>UNCOVERED</td><td>COVERED</td><td>PERCENT</td></tr><tr class="s0">
+<td>Automatically Generated Bins</td>
+<td class="rt">64</td>
+<td class="rt">63</td>
+<td class="rt">1</td>
+<td class="rt">1.56  </td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Automatically Generated Bins for tr.fpr</span>
+<br clear=all>
+<br clear=all>
+<span class=repname>Uncovered bins</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td><td>NUMBER</td></tr><tr class="s3">
+<td nowrap>[auto[4096:8191] - auto[258048:262143]]</td>
+<td align=center nowrap>--</td>
+<td align=center nowrap>--</td>
+<td class="rt">63</td>
+</tr></table><br clear=all>
+<br clear=all>
+<span class=repname>Covered bins</span>
+<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td class="alfsrt">NAME</td><td>COUNT</td><td>AT LEAST</td></tr><tr class="s10">
+<td>auto[0:4095]</td>
+<td class="rt">10000</td>
+<td class="rt">1</td>
+</tr></table><br clear=all>
+</div>
+</div>
+<div class="ui-layout-center-inner-north">
+<div id="center-bread-crumb" class="breadCrumb module urg-margin-bottom">
+  <ul>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.mode">Variable : tr.mode</a>    </li>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.value">Variable : tr.value</a>    </li>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.weight">Variable : tr.weight</a>    </li>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.ints">Variable : tr.ints</a>    </li>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.fps">Variable : tr.fps</a>    </li>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.intr">Variable : tr.intr</a>    </li>
+    <li>
+      <a href="#inst_tag_$unit::mac_model::mac_cov.tr.fpr">Variable : tr.fpr</a>    </li>
+  </ul>
+</div>
+</div>
+</div>
+<div class="ui-layout-south">
+<table align=center><tr><td class="s0 cl">0%</td>
+<td class="s1 cl">10%</td>
+<td class="s2 cl">20%</td>
+<td class="s3 cl">30%</td>
+<td class="s4 cl">40%</td>
+<td class="s5 cl">50%</td>
+<td class="s6 cl">60%</td>
+<td class="s7 cl">70%</td>
+<td class="s8 cl">80%</td>
+<td class="s9 cl">90%</td>
+<td class="s10 cl">100%</td></tr></table></div>
+</body>
+</html>
