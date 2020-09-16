@@ -1,7 +1,7 @@
 __pycache__
 *.ipynb
-#.gitignore
-#.gitattributes
+.gitignore
+.gitattributes
 .git
 test_vgg16.py
 mul.xlsx
